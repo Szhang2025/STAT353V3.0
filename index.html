@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introductory Statistics for Engineering Students - Complete Lecture Notes</title>
+    <title>Introductory Statistics for Engineering Students - Complete Lecture Notes & Quizzes</title>
     <!-- MathJax for LaTeX Rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -44,174 +44,112 @@
     <!-- CHAPTER 1 -->
     <div id="chapter-1">
         <h2>Chapter 1: Foundations of Probability & Discrete Random Variables</h2>
-        
         <h3>1.1 Experiments, Sample Spaces, Events, and Set Operations</h3>
-        <p>An <strong>experiment</strong> is any procedure that can be infinitely repeated and has a well-defined set of possible outcomes. The <strong>sample space (\(S\))</strong> is the set of all possible outcomes of an experiment. An <strong>event (\(E\))</strong> is a subset of the sample space (\(E \subseteq S\)).</p>
+        <p>An experiment is any procedure with well-defined outcomes. The sample space (\(S\)) is all possible outcomes, and an event (\(E\)) is a subset of \(S\).</p>
         <ul>
-            <li><strong>Union (\(A \cup B\)):</strong> Outcomes in \(A\) or \(B\) or both. In reliability engineering, if system success requires subsystem \(A\) <em>or</em> subsystem \(B\) to function, the success event is \(A \cup B\).</li>
-            <li><strong>Intersection (\(A \cap B\)):</strong> Outcomes in both \(A\) and \(B\). For instance, in cybersecurity, \(A\) = "packet contains anomaly" and \(B\) = "destination port is restricted".</li>
-            <li><strong>Complement (\(A^c\) or \(A'\)):</strong> Outcomes in \(S\) not in \(A\). Represents failure or non-occurrence.</li>
-            <li><strong>Disjoint (Mutually Exclusive) Events:</strong> Two events \(A\) and \(B\) are disjoint if \(A \cap B = \emptyset\).</li>
-            <li><strong>Venn Diagrams:</strong> Graphical representations used to visualize set intersections, unions, and partitions.</li>
+            <li><strong>Union (\(A \cup B\)):</strong> Outcomes in \(A\) or \(B\).</li>
+            <li><strong>Intersection (\(A \cap B\)):</strong> Outcomes in both \(A\) and \(B\).</li>
+            <li><strong>Complement (\(A^c\)):</strong> Outcomes in \(S\) not in \(A\).</li>
+            <li><strong>Disjoint:</strong> \(A \cap B = \emptyset\).</li>
         </ul>
-
-        <h3>1.2 Basic Counting Methods</h3>
-        <p>When outcomes are equally likely, probability is calculated as:</p>
+        <h3>1.2 Basic Counting & Probability</h3>
         <div class="formula-box">$$P(E) = \frac{n(E)}{n(S)}$$</div>
-        <ul>
-            <li><strong>Multiplication Rule:</strong> If an operation can be performed in \(n_1\) ways, and for each way, a second operation can be performed in \(n_2\) ways, the total number of sequences is \(n_1 \times n_2\).</li>
-            <li><strong>Permutations (Order matters):</strong> $$P_{r}^{n} = \frac{n!}{(n-r)!}$$</li>
-            <li><strong>Combinations (Order does not matter):</strong> $$\binom{n}{r} = \frac{n!}{r!(n-r)!}$$</li>
-        </ul>
-
-        <h3>1.3 Probability Axioms, Conditional Probability, and Independence</h3>
-        <p>Axioms: (1) \(0 \le P(A) \le 1\), (2) \(P(S) = 1\), (3) For mutually exclusive events \(A_1, A_2, \dots\), \(P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)\).</p>
-        <p><strong>Conditional Probability:</strong></p>
+        <p>Permutations: \(P_{r}^{n} = \frac{n!}{(n-r)!}\). Combinations: \(\binom{n}{r} = \frac{n!}{r!(n-r)!}\).</p>
+        <h3>1.3 Conditional Probability, Sensitivity, Specificity, Precision, Independence</h3>
         <div class="formula-box">$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$</div>
-        <p><strong>Diagnostic Metrics in Engineering & Cybersecurity:</strong></p>
         <ul>
-            <li><strong>Sensitivity (Recall / True Positive Rate):</strong> \(\text{Sensitivity} = P(\text{Positive Test} \mid \text{Condition Present}) = \frac{TP}{TP + FN}\)</li>
-            <li><strong>Specificity (True Negative Rate):</strong> \(\text{Specificity} = P(\text{Negative Test} \mid \text{Condition Absent}) = \frac{TN}{TN + FP}\)</li>
-            <li><strong>Precision (Positive Predictive Value):</strong> \(\text{Precision} = P(\text{Condition Present} \mid \text{Positive Test}) = \frac{TP}{TP + FP}\)</li>
+            <li><strong>Sensitivity (Recall):</strong> \(\frac{TP}{TP + FN}\)</li>
+            <li><strong>Specificity:</strong> \(\frac{TN}{TN + FP}\)</li>
+            <li><strong>Precision:</strong> \(\frac{TP}{TP + FP}\)</li>
+            <li><strong>Independence:</strong> \(P(A \cap B) = P(A)P(B)\)</li>
         </ul>
-        <p><strong>Independence:</strong> \(A\) and \(B\) are independent if and only if \(P(A \cap B) = P(A)P(B) \iff P(A \mid B) = P(A)\).</p>
-
-        <h3>1.4 Total Probability and Bayes' Rule</h3>
-        <p><strong>Law of Total Probability:</strong> If \(B_1, B_2, \dots, B_k\) partition \(S\):</p>
-        <div class="formula-box">$$P(A) = \sum_{i=1}^{k} P(A \mid B_i)P(B_i)$$</div>
-        <p><strong>Bayes' Rule:</strong></p>
-        <div class="formula-box">$$P(B_j \mid A) = \frac{P(A \mid B_j)P(B_j)}{\sum_{i=1}^{k} P(A \mid B_i)P(B_i)}$$</div>
-
-        <h3>1.5 Random Variables, CDF, PMF, PDF, and Expectations</h3>
-        <ul>
-            <li><strong>Random Variable (\(X\)):</strong> Measurable function mapping \(S\) to \(\mathbb{R}\).</li>
-            <li><strong>Discrete & PMF:</strong> \(p(x) = P(X = x)\), where \(\sum_x p(x) = 1\).</li>
-            <li><strong>Continuous & PDF:</strong> \(f(x)\), where \(\int_{-\infty}^{\infty} f(x)\,dx = 1\).</li>
-            <li><strong>Cumulative Distribution Function (CDF):</strong> \(F(x) = P(X \le x)\).</li>
-        </ul>
-        <p><strong>Expectation and Variance:</strong></p>
-        <div class="formula-box">$$\mu = E[X] = \sum_{x} x p(x) \quad (\text{discrete}), \quad \int_{-\infty}^{\infty} x f(x)\,dx \quad (\text{continuous})$$</div>
-        <div class="formula-box">$$V[X] = E[(X - \mu)^2] = E[X^2] - (E[X])^2, \quad \sigma = \sqrt{V[X]}$$</div>
-
-        <h3>1.6 Joint Distributions, Covariance, and Correlation</h3>
-        <ul>
-            <li><strong>Joint PMF:</strong> \(p(x, y) = P(X = x, Y = y)\).</li>
-            <li><strong>Covariance:</strong> \(\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E[XY] - E[X]E[Y]\)</li>
-            <li><strong>Correlation Coefficient:</strong> \(\rho_{XY} = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}, \quad -1 \le \rho_{XY} \le 1\)</li>
-        </ul>
+        <h3>1.4 Total Probability & Bayes' Rule</h3>
+        <div class="formula-box">$$P(B_j \mid A) = \frac{P(A \mid B_j)P(B_j)}{\sum P(A \mid B_i)P(B_i)}$$</div>
+        <h3>1.5 Random Variables, CDF, PMF, PDF, Expectation, Variance</h3>
+        <div class="formula-box">$$\mu = E[X] = \sum x p(x), \quad V[X] = E[X^2] - (E[X])^2$$</div>
+        <h3>1.6 Joint Distributions & Covariance</h3>
+        <p>Covariance: \(\text{Cov}(X, Y) = E[XY] - E[X]E[Y]\). Correlation: \(\rho_{XY} = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}\).</p>
 
         <div class="quiz-link-box">
-            <p><strong>Chapter 1 Assessment:</strong> 20-Question Timed Quiz</p>
-            <a class="btn" href="quiz_chapter1.html" target="_blank">Launch Chapter 1 Quiz</a>
+            <p><strong>Chapter 1 Assessment:</strong> Secure 20-Question Timed Quiz</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=1" target="_blank">Launch Chapter 1 Quiz</a>
         </div>
     </div>
 
     <!-- CHAPTER 2 -->
     <div id="chapter-2">
         <h2>Chapter 2: Standard Probability Distributions & Engineering Applications</h2>
-        
         <h3>2.1 Discrete Distributions</h3>
         <ul>
-            <li><strong>Binomial (\(X \sim \text{Bin}(n, p)\)):</strong> Models success count in \(n\) independent Bernoulli trials. \(P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}\), \(E[X] = np\), \(V[X] = np(1-p)\).</li>
-            <li><strong>Poisson (\(X \sim \text{Poisson}(\lambda)\)):</strong> Models discrete event arrivals in fixed intervals. \(P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}\), \(E[X] = \lambda\), \(V[X] = \lambda\).</li>
-            <li><strong>Geometric (\(X \sim \text{Geom}(p)\)):</strong> Models trial count until first success. \(P(X = k) = (1-p)^{k-1}p\), \(E[X] = \frac{1}{p}\), \(V[X] = \frac{1-p}{p^2}\).</li>
+            <li><strong>Binomial:</strong> \(P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\), \(E[X]=np\), \(V[X]=np(1-p)\).</li>
+            <li><strong>Poisson:</strong> \(P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}\), \(E[X]=\lambda\), \(V[X]=\lambda\).</li>
+            <li><strong>Geometric:</strong> \(P(X=k) = (1-p)^{k-1}p\), \(E[X]=\frac{1}{p}\).</li>
         </ul>
-
         <h3>2.2 Continuous Distributions</h3>
         <ul>
-            <li><strong>Continuous Uniform (\(X \sim \text{Unif}(a, b)\)):</strong> \(f(x) = \frac{1}{b-a}\), \(E[X] = \frac{a+b}{2}\), \(V[X] = \frac{(b-a)^2}{12}\).</li>
-            <li><strong>Normal (Gaussian) (\(X \sim N(\mu, \sigma^2)\)):</strong> Bell-shaped symmetric curve. Standardization: \(Z = \frac{X - \mu}{\sigma} \sim N(0, 1)\).</li>
-            <li><strong>Exponential (\(X \sim \text{Exp}(\lambda)\)):</strong> Models time between Poisson events. \(f(x) = \lambda e^{-\lambda x}\), \(E[X] = \frac{1}{\lambda}\), \(V[X] = \frac{1}{\lambda^2}\). Possesses the memoryless property.</li>
+            <li><strong>Uniform:</strong> \(f(x) = \frac{1}{b-a}\).</li>
+            <li><strong>Normal:</strong> \(Z = \frac{X-\mu}{\sigma} \sim N(0,1)\).</li>
+            <li><strong>Exponential:</strong> \(f(x) = \lambda e^{-\lambda x}\), \(E[X]=\frac{1}{\lambda}\). Memoryless property links Poisson process waiting times.</li>
         </ul>
-
         <div class="quiz-link-box">
-            <p><strong>Chapter 2 Assessment:</strong> 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapter 1)*</p>
-            <a class="btn" href="quiz_chapter2.html" target="_blank">Launch Chapter 2 Quiz</a>
+            <p><strong>Chapter 2 Assessment:</strong> Secure 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapter 1)*</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=2" target="_blank">Launch Chapter 2 Quiz</a>
         </div>
     </div>
 
     <!-- CHAPTER 3 -->
     <div id="chapter-3">
         <h2>Chapter 3: Descriptive Statistics & Point Estimation</h2>
-        
-        <h3>3.1 The Big Picture of Statistics</h3>
-        <p>Distinguishes between populations (entire collection) and samples (subsets), and parameters (population metrics) versus statistics (sample metrics).</p>
-
-        <h3>3.2 Numerical and Graphical Summaries</h3>
-        <ul>
-            <li><strong>Numeric:</strong> Mean, median, mode, variance, standard deviation, IQR.</li>
-            <li><strong>Graphical:</strong> Histograms (distribution shape), Boxplots (quartiles and outliers), Barplots (categorical frequencies), Scatterplots (bivariate associations).</li>
-        </ul>
-
-        <h3>3.3 Point Estimation & MLE</h3>
-        <p><strong>Maximum Likelihood Estimation (MLE):</strong> Maximizes likelihood function \(L(\theta)\) to estimate parameters. Evaluated via bias \(\text{Bias}(\hat{\theta}) = E[\hat{\theta}] - \theta\) and standard error.</p>
-
+        <h3>3.1 Big Picture & Numeric/Graphical Summaries</h3>
+        <p>Populations vs. samples, parameters vs. statistics. Summaries include mean, median, variance, histograms, boxplots, barplots, and scatterplots.</p>
+        <h3>3.2 Point Estimation & MLE</h3>
+        <p>Maximum Likelihood Estimation maximizes \(L(\theta)\). Evaluated via bias and standard error.</p>
         <div class="quiz-link-box">
-            <p><strong>Chapter 3 Assessment:</strong> 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1 & 2)*</p>
-            <a class="btn" href="quiz_chapter3.html" target="_blank">Launch Chapter 3 Quiz</a>
+            <p><strong>Chapter 3 Assessment:</strong> Secure 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-2)*</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=3" target="_blank">Launch Chapter 3 Quiz</a>
         </div>
     </div>
 
     <!-- CHAPTER 4 -->
     <div id="chapter-4">
         <h2>Chapter 4: Statistical Inference: Confidence Intervals & Hypothesis Testing</h2>
-        
-        <h3>4.1 Sampling Distributions & Central Limit Theorem (CLT)</h3>
-        <p>As sample size \(n\) increases, sampling distributions of sample means \(\bar{X}\) and proportions \(\hat{p}\) approximate normal distributions.</p>
-
-        <h3>4.2 Inference for Population Proportions</h3>
-        <ul>
-            <li><strong>Single Proportion CI:</strong> \(\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\) (Conditions: \(n\hat{p} \ge 10, n(1-\hat{p}) \ge 10\)).</li>
-            <li><strong>Single Proportion Z-test (\(H_0: p = p_0\)):</strong> \(z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\).</li>
-            <li><strong>Two Proportions CI:</strong> \((\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2} \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}\).</li>
-            <li><strong>Two Proportions Z-test:</strong> Uses pooled proportion \(\bar{p}\).</li>
-        </ul>
-
-        <h3>4.3 Inference for Population Means (Welch's Procedures)</h3>
-        <ul>
-            <li><strong>Single Mean t-Interval:</strong> \(\bar{x} \pm t_{\alpha/2, n-1} \frac{s}{\sqrt{n}}\).</li>
-            <li><strong>Single Mean t-Test:</strong> \(t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\).</li>
-            <li><strong>Two Independent Means (Welch's):</strong> Accommodates unequal variances \(\sigma_1^2 \neq \sigma_2^2\) with Welch-Satterthwaite degrees of freedom.</li>
-        </ul>
-
-        <h3>4.4 Sample Size Determination & Error Fundamentals</h3>
-        <p>Margin of error calculations for proportions, sample size formulas, Type I (\(\alpha\)) and Type II (\(\beta\)) errors, significance levels, and correspondence between two-sided CIs and two-tailed tests.</p>
-
+        <h3>4.1 Sampling Distributions & CLT</h3>
+        <p>Central Limit Theorem governs sample means and proportions.</p>
+        <h3>4.2 Proportions Inference</h3>
+        <p>Single & two proportion CIs and Z-tests, sample size determination, Gallup/Pew polls.</p>
+        <h3>4.3 Means Inference (Welch's Procedures)</h3>
+        <p>Single & two independent population means (Welch's t-intervals and t-tests for unequal variances).</p>
+        <h3>4.4 Errors & Testing Fundamentals</h3>
+        <p>Type I (\(\alpha\)) and Type II (\(\beta\)) errors, significance/confidence levels, and two-sided CI relationship to two-tailed tests.</p>
         <div class="quiz-link-box">
-            <p><strong>Chapter 4 Assessment:</strong> 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-3)*</p>
-            <a class="btn" href="quiz_chapter4.html" target="_blank">Launch Chapter 4 Quiz</a>
+            <p><strong>Chapter 4 Assessment:</strong> Secure 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-3)*</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=4" target="_blank">Launch Chapter 4 Quiz</a>
         </div>
     </div>
 
     <!-- CHAPTER 5 -->
     <div id="chapter-5">
         <h2>Chapter 5: Categorical Data Analysis & Analysis of Variance (ANOVA)</h2>
-        
         <h3>5.1 Chi-Square Tests</h3>
-        <p>Evaluates categorical associations via Goodness-of-Fit, Homogeneity, and Independence tests: \(\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}\).</p>
-
+        <p>Goodness-of-Fit, Homogeneity, and Independence tests (\(\chi^2 = \sum \frac{(O-E)^2}{E}\)).</p>
         <h3>5.2 One-Way ANOVA & Multiple Testing</h3>
-        <p>Compares \(3+\) population means using variance ratios (\(F\)-statistics). Follow-up post-hoc tests (Tukey's HSD) and Bonferroni corrections manage family-wise error inflation.</p>
-
+        <p>Comparing 3+ means via F-statistics, Tukey's HSD post-hoc test, and Bonferroni adjustments.</p>
         <div class="quiz-link-box">
-            <p><strong>Chapter 5 Assessment:</strong> 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-4)*</p>
-            <a class="btn" href="quiz_chapter5.html" target="_blank">Launch Chapter 5 Quiz</a>
+            <p><strong>Chapter 5 Assessment:</strong> Secure 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-4)*</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=5" target="_blank">Launch Chapter 5 Quiz</a>
         </div>
     </div>
 
     <!-- CHAPTER 6 -->
     <div id="chapter-6">
         <h2>Chapter 6: Regression & Quality Control Engineering</h2>
-        
         <h3>6.1 Linear Regression</h3>
-        <p>Simple Linear Regression (\(Y = \beta_0 + \beta_1 X + \epsilon\)) and Multiple Linear Regression estimated via Ordinary Least Squares (OLS).</p>
-
+        <p>Simple and Multiple Linear Regression via Ordinary Least Squares (OLS).</p>
         <h3>6.2 Statistical Quality Control (SQC)</h3>
-        <p>Monitors industrial and software processes over time using \(\bar{x}\) and \(R\) control charts for numerical measurements, and \(p\) control charts for defect fractions.</p>
-
+        <p>\(\bar{x}\), \(R\), and \(p\) control charts for monitoring process stability.</p>
         <div class="quiz-link-box">
-            <p><strong>Chapter 6 Assessment:</strong> 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-5)*</p>
-            <a class="btn" href="quiz_chapter6.html" target="_blank">Launch Chapter 6 Quiz</a>
+            <p><strong>Chapter 6 Assessment:</strong> Secure 20-Question Timed Quiz *(Requires \(\ge 80\%\) on Chapters 1-5)*</p>
+            <a class="btn" href="https://script.google.com/macros/s/AKfycbzPrPCDIxnxVS0k_07as9A7dAFd8NAYREPWhh1ysGjS78NrO80At8jdkBqky9nV_OaM/exec?quiz=6" target="_blank">Launch Chapter 6 Quiz</a>
         </div>
     </div>
 
